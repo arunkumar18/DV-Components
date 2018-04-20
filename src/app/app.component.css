@@ -1,0 +1,29 @@
+.btn-style {
+    height: 30px;
+    padding: 0 20px;
+    margin-right: 10px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    font-family: Roboto;
+    font-size: 16px;
+}
+
+.btn-success{
+   
+    background-color:#4b8b62;
+    border: 1px solid #4b8b62;
+}
+.btn-danger{
+    background-color:#af4e4a;
+    border: 1px solid #af4e4a;
+}
+.btn-info{
+    background-color:#397b9b;
+    border: 1px solid #397b9b;
+}
+.btn-warning{
+    background-color:#f5e26e;
+    border: 1px solid #f5e26e;
+}
