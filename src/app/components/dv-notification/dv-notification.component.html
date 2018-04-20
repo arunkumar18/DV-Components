@@ -1,5 +1,5 @@
 <div class="notification-container">
-  <div *ngFor="let notification of notifications" class="alert" 
+  <div *ngFor="let notification of notifications" class="notification" 
       [ngClass]="{'success': notification.type==0, 'error': notification.type==1, 'info': notification.type==2, 'warning': notification.type==3}">
     {{notification.message}}
     <a class="close" (click)="removeAlert(notification)">&times;</a>

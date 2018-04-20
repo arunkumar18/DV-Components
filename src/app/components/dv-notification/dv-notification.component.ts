@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'dv-notification',
   templateUrl: './dv-notification.component.html',
-  styleUrls: ['./dv-notification.component.css']
+  styleUrls: ['./dv-notification.component.scss']
 })
 export class DvNotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];

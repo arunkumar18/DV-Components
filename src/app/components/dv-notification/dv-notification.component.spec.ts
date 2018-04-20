@@ -6,6 +6,7 @@ describe('DvNotificationComponent', () => {
     let component: DvNotificationComponent;
     let fixture: ComponentFixture<DvNotificationComponent>;
     let dvNotificationService: DVNotificationService;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [DvNotificationComponent],
@@ -30,6 +31,7 @@ describe('DvNotificationComponent', () => {
             type: NotificationType.Success,
             message: 'data save successfully!'
         };
+        // push notifyObj to notication array
         component.notifications.push(notifyObj);
         expect(component.notifications.length == 1).toBeTruthy();
 
@@ -38,17 +40,19 @@ describe('DvNotificationComponent', () => {
 
     });
 
-    it('create alert should create notification', () => {
+    it('create notification should create notification', () => {
         component.notifications = [];
         let notifyObj: Notification = <Notification>{
             type: NotificationType.Success,
             message: 'data save successfully!'
         };
-        dvNotificationService.pushNotification(notifyObj.type, notifyObj.message);
-        expect(component.notifications.length == 1).toBeTruthy();
-        tick(6000);
-        expect(component.notifications.indexOf(notifyObj) > 0).toBeFalsy();
 
+        dvNotificationService.pushNotification(notifyObj.type, notifyObj.message);
+       // tick(1000)
+        expect(component.notifications.length == 1).toBeTruthy();
+        //tick(6000);
+        // timeout functionality is tested here
+        //expect(component.notifications.indexOf(notifyObj) > 0).toBeFalsy();
     });
 
 });
