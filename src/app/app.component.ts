@@ -8,21 +8,21 @@ import { DVNotificationService, NotificationType } from '../app/components/dv-no
 })
 export class AppComponent {
   title = 'DV- Components';
-  constructor(public notificationService: DVNotificationService) { }  
+  constructor(public notificationService: DVNotificationService) {}
 
   openSnackBar(type, message) {
     switch (type) {
-      case "Success":
-        this.notificationService.pushNotification(NotificationType.Success, message)
+      case 'Success':
+        this.notificationService.displayNotification(NotificationType.Success, message);
         break;
-      case "Error":
-        this.notificationService.pushNotification(NotificationType.Error, message)
+      case 'Error':
+        this.notificationService.displayNotification(NotificationType.Error, message);
         break;
-      case "Info":
-        this.notificationService.pushNotification(NotificationType.Info, message)
+      case 'Info':
+        this.notificationService.displayNotification(NotificationType.Info, message);
         break;
-      case "Warning":
-        this.notificationService.pushNotification(NotificationType.Warning, message)
+      case 'Warning':
+        this.notificationService.displayNotification(NotificationType.Warning, message);
         break;
     }
   }

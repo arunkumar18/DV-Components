@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/observable';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class DVNotificationService {
     public emitNotification = this.subject.asObservable();
 
     // call notification component to create notifications
-    pushNotification(type: NotificationType, message: string) {
+    displayNotification(type: NotificationType, message: string) {
         this.subject.next(<Notification>{ type: type, message: message });
     }
 }

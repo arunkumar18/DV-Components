@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DvNotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
-  private timeout: number = 5000;
+  timeout = 5000; // need to be added in configuration
   private notificationSubscription: Subscription;
 
   constructor(private notificationService: DVNotificationService) { }
@@ -18,28 +18,34 @@ export class DvNotificationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // subscription to notification service
     this.notificationSubscription = this.notificationService.emitNotification.subscribe((notification: Notification) => {
-      if (!notification) {
-        // clear all notifications
-        this.notifications = [];
+      if (!this.validateNotification(notification)) {
         return;
       }
-
       // add notification to array
       this.notifications.push(notification);
-
       // set the timeout to close the notifications
       setTimeout(() => {
         if (this.notifications) {
           if (this.notifications.indexOf(notification) > -1) {
-            this.removeAlert(notification);
+            this.removeNotification(notification);
           }
         }
       }, this.timeout);
     });
   }
 
+  private validateNotification(notification: Notification) {
+    // check for notification type and message
+    if (notification) {
+      if (notification.message !== '' && notification.type in NotificationType) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // close alert
-  public removeAlert(notification: Notification) {
+  public removeNotification(notification: Notification) {
     this.notifications = this.notifications.filter(x => x !== notification);
   }
 
