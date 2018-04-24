@@ -5,13 +5,14 @@
 <div>
 
   <div>
-    <button class="btn-style btn-success" (click)='openSnackBar("Success", "Success message")'>Success</button>
+    <button class="btn-style btn-success" (click)='openSnackBar("Success", "<u>Success message</u>")'>Success</button>
     <button class="btn-style btn-danger" (click)='openSnackBar("Error", "Error message")'>Error</button>
     <button class="btn-style btn-info" (click)='openSnackBar("Info", "Info message")'>Info</button>
     <button class="btn-style btn-warning" (click)='openSnackBar("Warning", "Warning message")'>Warning</button>
   </div>
   <div>
-    <dv-notification></dv-notification>
+    <dv-notification [timeout]= 5000></dv-notification>
   </div>
-  <div style="clear:both"></div>
+   <div style="clear:both"></div>
+  <!-- <dv-select></dv-select> -->
 </div>

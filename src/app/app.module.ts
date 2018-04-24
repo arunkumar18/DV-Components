@@ -5,21 +5,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material';
 import { DvNotificationComponent } from './components/dv-notification/dv-notification.component';
 import { DVNotificationService } from './components/dv-notification/dv-notification.service';
-
-
+import { DvSelectComponent } from './components/dv-select/dv-select.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DvNotificationComponent
+    DvNotificationComponent,
+    DvSelectComponent,
   ],
   imports: [
     BrowserModule,
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DVNotificationService],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -27,7 +27,7 @@ describe('DvNotificationComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create notiifcation component', () => {
+    it('should create notification component', () => {
         expect(component).toBeTruthy();
     });
 
@@ -36,7 +36,7 @@ describe('DvNotificationComponent', () => {
         expect(component.notifications.length === 1).toBeTruthy();
     });
 
-    it('multiple tyes of nofication should be added to notification list', () => {
+    it('multiple tyes of notification should be added to notification list', () => {
         dvNotificationService.displayNotification(NotificationType.Success, notificationObj.message);
         dvNotificationService.displayNotification(NotificationType.Error, notificationObj.message);
         dvNotificationService.displayNotification(NotificationType.Info, notificationObj.message);
@@ -44,7 +44,7 @@ describe('DvNotificationComponent', () => {
         expect(component.notifications.length === 4).toBeTruthy();
     });
 
-    it('validate notifiaction message and type ', () => {
+    it('validate notification message and type ', () => {
         dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
 
         expect(component.notifications.length === 1).toBeTruthy();
@@ -52,7 +52,7 @@ describe('DvNotificationComponent', () => {
         expect(component.notifications[0].message).toBe(notificationObj.message);
     });
 
-    it('removeNotiifcation function should remove notification', () => {
+    it('removeNotification function should remove notification', () => {
         // add notificationObj to notification array
         component.notifications.push(notificationObj);
         expect(component.notifications.length === 1).toBeTruthy();
@@ -62,18 +62,25 @@ describe('DvNotificationComponent', () => {
 
     });
 
+    it('notification should not be closed by itself when no timeout is set', fakeAsync(() => {
+        component.notifications = [];
+        // add notification
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
+        expect(component.notifications.length === 1).toBeTruthy();
+        tick(component.timeout + 5);
+        // notification without timeout is tested here
+        expect(component.notifications.indexOf(notificationObj) > -1).toBeFalsy();
+    }));
+
     it('timeout on notification should closed the notification bar', fakeAsync(() => {
         component.notifications = [];
-        const notifyObj: Notification = <Notification>{
-            type: NotificationType.Success,
-            message: 'data save successfully!'
-        };
         // add notification
-        dvNotificationService.displayNotification(notifyObj.type, notifyObj.message);
+        component.timeout = 5000
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
         expect(component.notifications.length === 1).toBeTruthy();
         tick(component.timeout + 5);
         // timeout functionality is tested here
-        expect(component.notifications.indexOf(notifyObj) > 0).toBeFalsy();
+        expect(component.notifications.indexOf(notificationObj) > 0).toBeFalsy();
     }));
 
     it('notification should not be displayed when notification message is empty', () => {

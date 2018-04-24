@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DVNotificationService, Notification, NotificationType } from './dv-notification.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DvNotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
-  timeout = 5000; // need to be added in configuration
+  @Input() timeout: number;
   private notificationSubscription: Subscription;
 
   constructor(private notificationService: DVNotificationService) { }
@@ -23,15 +23,18 @@ export class DvNotificationComponent implements OnInit, OnDestroy {
       }
       // add notification to array
       this.notifications.push(notification);
-      // set the timeout to close the notifications
-      setTimeout(() => {
-        if (this.notifications) {
-          if (this.notifications.indexOf(notification) > -1) {
-            this.removeNotification(notification);
+      if (this.timeout) {
+        // set the timeout to close the notifications
+        setTimeout(() => {
+          if (this.notifications) {
+            if (this.notifications.indexOf(notification) > -1) {
+              this.removeNotification(notification);
+            }
           }
-        }
-      }, this.timeout);
+        }, this.timeout);
+      }
     });
+
   }
 
   private validateNotification(notification: Notification) {
