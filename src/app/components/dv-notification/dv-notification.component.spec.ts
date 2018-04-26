@@ -9,7 +9,8 @@ describe('DvNotificationComponent', () => {
     // mock notification object
     const notificationObj: Notification = <Notification>{
         type: NotificationType.Success,
-        message: 'notification message'
+        message: 'notification message',
+        timeout: 5000
     };
 
     beforeEach(async(() => {
@@ -32,20 +33,20 @@ describe('DvNotificationComponent', () => {
     });
 
     it('dispalyNotification function should create notification', () => {
-        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message, notificationObj.timeout);
         expect(component.notifications.length === 1).toBeTruthy();
     });
 
     it('multiple tyes of notification should be added to notification list', () => {
-        dvNotificationService.displayNotification(NotificationType.Success, notificationObj.message);
-        dvNotificationService.displayNotification(NotificationType.Error, notificationObj.message);
-        dvNotificationService.displayNotification(NotificationType.Info, notificationObj.message);
-        dvNotificationService.displayNotification(NotificationType.Warning, notificationObj.message);
+        dvNotificationService.displayNotification(NotificationType.Success, notificationObj.message, notificationObj.timeout);
+        dvNotificationService.displayNotification(NotificationType.Error, notificationObj.message, notificationObj.timeout);
+        dvNotificationService.displayNotification(NotificationType.Info, notificationObj.message, notificationObj.timeout);
+        dvNotificationService.displayNotification(NotificationType.Warning, notificationObj.message, notificationObj.timeout);
         expect(component.notifications.length === 4).toBeTruthy();
     });
 
     it('validate notification message and type ', () => {
-        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message, notificationObj.timeout);
 
         expect(component.notifications.length === 1).toBeTruthy();
         expect(component.notifications[0].type).toBe(notificationObj.type);
@@ -58,43 +59,43 @@ describe('DvNotificationComponent', () => {
         expect(component.notifications.length === 1).toBeTruthy();
 
         component.removeNotification(notificationObj);
-        expect(component.notifications.indexOf(notificationObj) > -1).toBeFalsy();
+        expect(component.notifications.indexOf(notificationObj) === -1).toBeTruthy();
 
     });
 
-    it('notification should not be closed by itself when no timeout is set', fakeAsync(() => {
+    it('notification should not be closed by itself when timeout is 0', fakeAsync(() => {
         component.notifications = [];
         // add notification
-        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message, 0);
         expect(component.notifications.length === 1).toBeTruthy();
-        tick(component.timeout + 5);
+        tick(5000);
         // notification without timeout is tested here
-        expect(component.notifications.indexOf(notificationObj) > -1).toBeFalsy();
+        expect(component.notifications.indexOf(notificationObj) === -1).toBeTruthy();
     }));
 
     it('timeout on notification should closed the notification bar', fakeAsync(() => {
         component.notifications = [];
         // add notification
-        component.timeout = 5000
-        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message);
+
+        dvNotificationService.displayNotification(notificationObj.type, notificationObj.message, 5000);
         expect(component.notifications.length === 1).toBeTruthy();
-        tick(component.timeout + 5);
+        tick(5000);
         // timeout functionality is tested here
-        expect(component.notifications.indexOf(notificationObj) > 0).toBeFalsy();
+        expect(component.notifications.indexOf(notificationObj) === -1).toBeTruthy();
     }));
 
     it('notification should not be displayed when notification message is empty', () => {
-        dvNotificationService.displayNotification(notificationObj.type, '');
+        dvNotificationService.displayNotification(notificationObj.type, '', 0);
         expect(component.notifications.length === 0).toBeTruthy();
     });
 
     it('notification should not be displayed when notification type is invalid', () => {
-        dvNotificationService.displayNotification(notificationObj.type, '');
+        dvNotificationService.displayNotification(notificationObj.type, '', 0);
         expect(component.notifications.length === 0).toBeTruthy();
     });
 
-    it('notification should not be displayed notification is invalid', () => {
-        dvNotificationService.displayNotification(10, '');
+    it('notification should not be displayed when notification is invalid', () => {
+        dvNotificationService.displayNotification(10, '', 0);
         expect(component.notifications.length === 0).toBeTruthy();
      });
 });

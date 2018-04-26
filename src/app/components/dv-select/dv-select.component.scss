@@ -1,0 +1,35 @@
+.example-full-width{
+    position: relative;
+}
+.arrowIcon{
+    position: absolute;
+    right: 10px;
+    top: -1px;
+    font-weight: 500;
+    font-size:20px;
+    color: #007392;
+} 
+.input-auto{
+    width: 290.6px;
+    height: 35px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.26);
+    box-sizing: border-box;
+    padding-right: 30px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: normal;  
+    text-align: left;
+    color: #494949;
+    text-indent: 10px;
+}
+.error{
+    border: 1px red solid;
+}
+.error-label{
+    font-family: Roboto;
+    font-size: 14px;
+    color: red; 
+}

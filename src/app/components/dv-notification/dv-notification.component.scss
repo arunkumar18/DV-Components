@@ -1,6 +1,5 @@
 .notification{
     border-radius: 4px;
-    height: 55px;
     width: 1048px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     margin: 0 auto;
@@ -10,10 +9,10 @@
     font-size: 16px;
     font-weight: bold;
     z-index: 10000;
-    line-height: 55px;
-    position: relative;
     text-align: left;
-    padding: 0 20px;
+    padding: 20px;
+    display: flex;
+    position: relative;
 }
 .success{   
     background-color:#4b8b62;
@@ -29,9 +28,10 @@
 }
 .close {
     position: absolute;
-    right: 20px;
+    right: 15px;
     font-size: 24px;
     cursor: pointer;
+    top:14px;
 }
 .notification-container{
     position: absolute;
@@ -39,3 +39,6 @@
     left: 0;
     right: 0;
 }
+.layer {
+    padding-right: 15px;
+  }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { DVNotificationService, Notification, NotificationType } from './dv-notification.service';
 import { Subscription } from 'rxjs/Subscription';
+import { timeout } from 'rxjs/operators';
 
 
 @Component({
@@ -10,7 +11,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DvNotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
-  @Input() timeout: number;
   private notificationSubscription: Subscription;
 
   constructor(private notificationService: DVNotificationService) { }
@@ -23,7 +23,7 @@ export class DvNotificationComponent implements OnInit, OnDestroy {
       }
       // add notification to array
       this.notifications.push(notification);
-      if (this.timeout) {
+      if (notification.timeout > 0) {
         // set the timeout to close the notifications
         setTimeout(() => {
           if (this.notifications) {
@@ -31,7 +31,7 @@ export class DvNotificationComponent implements OnInit, OnDestroy {
               this.removeNotification(notification);
             }
           }
-        }, this.timeout);
+        }, notification.timeout);
       }
     });
 

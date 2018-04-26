@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
 import { Subject } from 'rxjs/Subject';
+import { timeout } from 'q';
 
 @Injectable()
 export class DVNotificationService {
@@ -8,8 +9,8 @@ export class DVNotificationService {
     public emitNotification = this.subject.asObservable();
 
     // call notification component to create notifications
-    displayNotification(type: NotificationType, message: string) {
-        this.subject.next(<Notification>{ type: type, message: message });
+    displayNotification(type: NotificationType, message: string, timeout) {
+        this.subject.next(<Notification>{ type: type, message: message, timeout: timeout  });
     }
 }
 
@@ -17,6 +18,7 @@ export class DVNotificationService {
 export class Notification {
     type: NotificationType;
     message: string;
+    timeout: number;
 }
 
 export enum NotificationType {

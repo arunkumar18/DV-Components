@@ -1,7 +1,9 @@
 <div class="notification-container">
   <div *ngFor="let notification of notifications" class="notification" 
       [ngClass]="{'success': notification.type==0, 'error': notification.type==1, 'info': notification.type==2, 'warning': notification.type==3}">
-      <span [innerHTML]=notification.message> </span>
+      <span class="layer" [innerHTML]=notification.message> </span>
     <a class="close" (click)="removeNotification(notification)">&times;</a>
   </div>
 </div>
+
+<!-- title="{{notification.message}}" -->

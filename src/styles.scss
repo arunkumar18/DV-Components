@@ -1,14 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-.red-snackbar{
-    background-color: red;
-    position: relative;
-    margin-bottom: 2px;
-    bottom: 90%;
-}
-
-body,html{
-    margin: 0;
-    padding: 0;
-}
