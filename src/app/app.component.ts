@@ -8,29 +8,22 @@ import { timeout } from 'q';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  suggestionBoxInput:any[];
   title = 'DV- Components';
+  // dv-select
   isValid:boolean;
   selectedValue: string;
   placeholder: string = "Select";
+  suggestionBoxInput:any[];
+  
   constructor(public notificationService: DVNotificationService) {
+    // dv-select
     this.suggestionBoxInput = [
       'One',
       'Two',
       'Three',
       'Four',
       'Five',
-      'One',
-      'Two',
-      'Three',
-      'Four',
-      'Five',
-      'One',
-      'Two',
-      'Three',
-      'Four',
-      'Five',
-      'One',
+       'One',
       'Two',
       'Three',
       'Four',

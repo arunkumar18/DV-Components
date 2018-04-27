@@ -31,7 +31,11 @@
 .error-label{
     font-family: Roboto;
     font-size: 14px;
-    color: red; 
+    color: red;
+    align-self: left;
+    display: block;
+    padding-left: 10px;
+    padding-top: 4px;
 }
 .standard-box{
     box-shadow: 0 0px 0px 0;

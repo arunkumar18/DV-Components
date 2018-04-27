@@ -41,6 +41,7 @@ export class DvSelectComponent implements OnInit {
       );
   }
 
+  // validate the user input with available options
   validateInput(val) {
     let data = this.filter(val);   
     if (!this.allowCustomInput && val != '' && data.length == 0) {
@@ -52,6 +53,7 @@ export class DvSelectComponent implements OnInit {
     return data;
   }
 
+  // filter to display sugesstions
   filter(val: string): string[] {
     if (val.length <= 0 && !this.downArrowClicked) {
       return [];
@@ -63,6 +65,7 @@ export class DvSelectComponent implements OnInit {
     return suggestionTexts;
   }
 
+  // drop down click event
   onClick(e) {
     e.stopPropagation();
     this.downArrowClicked = true;
