@@ -10,6 +10,9 @@ import { timeout } from 'q';
 export class AppComponent {
   suggestionBoxInput:any[];
   title = 'DV- Components';
+  isValid:boolean;
+  selectedValue: string;
+  placeholder: string = "Select";
   constructor(public notificationService: DVNotificationService) {
     this.suggestionBoxInput = [
       'One',
@@ -36,6 +39,7 @@ export class AppComponent {
   }
 
   openSnackBar(type: string, message: string, timeout: number= 0) {
+    console.log(this.selectedValue);
     switch (type) {
       case 'Success':
         this.notificationService.displayNotification(NotificationType.Success, message, timeout);

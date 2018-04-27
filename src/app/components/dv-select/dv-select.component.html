@@ -1,6 +1,6 @@
 <mat-form-field class="example-full-width">
-  <input matInput class="input-auto" type="text" placeholder="Select"
-   #selectInput  [ngClass]="{'error': displayError}"
+  <input matInput class="input-auto" type="text" placeholder={{placeholder}}
+   #selectInput  [ngClass]="{'error': isValid == false, 'standard-box':standardBoxStyle}"
    [formControl]="myControl" [matAutocomplete]="auto">
    <span class="fa fa-angle-down arrowIcon" (click)="onClick($event)"></span> 
 </mat-form-field>
@@ -10,4 +10,4 @@
     {{ option }}
   </mat-option>
 </mat-autocomplete> 
-<label *ngIf="displayError" class="error-label">Please enter valid input</label>  
+<label *ngIf="!isValid" class="error-label">No Item Found</label>  
